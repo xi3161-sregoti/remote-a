@@ -1,0 +1,46 @@
+{
+  "operations": [
+    {
+      "conditions": [
+        {
+          "expr": "data.name == '01-vpc-for-eks'",
+          "path": "/xlr8s/components/+name:01-vpc-for-eks:0"
+        }
+      ],
+      "op": "replace",
+      "src": "/xlr8s/components/+name:01-vpc-for-eks:0/outputs/vpc_id/value",
+      "dst": "/existing_vpc_id",
+      "options": {
+        "defaults": {
+          "value": "random-id"
+        },
+        "template": {
+          "value": "{{.Values}}",
+          "format": "string"
+        }
+      }
+    },
+    {
+      "conditions": [
+        {
+          "expr": "data.name == '01-vpc-for-eks'",
+          "path": "/xlr8s/components/+name:01-vpc-for-eks:0"
+        }
+      ],
+      "op": "replace",
+      "src": "/xlr8s/components/+name:01-vpc-for-eks:0/outputs/private_subnets/value",
+      "dst": "/existing_vpc_subnets",
+      "options": {
+        "defaults": {
+          "value": [
+            "random-id"
+          ]
+        },
+        "template": {
+          "value": "{{toYaml .Values | nindent 4}}",
+          "format": "yaml"
+        }
+      }
+    }
+  ]
+}
