@@ -1,0 +1,10 @@
+consumerBindings:
+- consumptionType: file
+  options:
+    file: /data/kubeconfig
+    format: yaml
+    k8sNamespace: ""
+    template: '{{.xlr8s.secret.kubeconfig}}'
+  secretName: eks-sharad-2
+  secretType: kube-config
+producerBindings: []
